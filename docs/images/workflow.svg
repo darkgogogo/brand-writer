@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 960" font-family="-apple-system, BlinkMacSystemFont, &quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#475569"/>
+    </marker>
+    <marker id="arrow-dashed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#7c3aed"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="1000" height="960" fill="#ffffff"/>
+  <text x="500" y="44" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">brand-writer 工作流程</text>
+  <text x="500" y="68" text-anchor="middle" font-size="13" fill="#64748b">6-skill orchestration · entry router → write → check → human gate → social/image</text>
+  <g filter="url(#shadow)">
+    <rect x="350" y="100" width="300" height="56" rx="10" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+  </g>
+  <text x="500" y="124" text-anchor="middle" font-size="13" font-weight="600" fill="#0f172a">User</text>
+  <text x="500" y="143" text-anchor="middle" font-size="12" fill="#475569">"给 &lt;product&gt; 写 &lt;topic&gt;"</text>
+  <line x1="500" y1="156" x2="500" y2="195" stroke="#475569" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <g filter="url(#shadow)">
+    <rect x="290" y="200" width="420" height="116" rx="12" fill="#f1f5f9" stroke="#475569" stroke-width="1.8"/>
+  </g>
+  <text x="500" y="226" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">brand-writer  <tspan font-size="12" font-weight="500" fill="#64748b">(entry router)</tspan></text>
+  <text x="320" y="252" font-size="12" fill="#334155">• 方案甲确认（防误触）</text>
+  <text x="320" y="272" font-size="12" fill="#334155">• 加载产品 profile</text>
+  <text x="320" y="292" font-size="12" fill="#334155">• 收集 风格源 / 借鉴维度 / 原型 / 主题</text>
+  <path d="M 290 258 Q 200 258 180 320 L 180 360" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow-dashed)"/>
+  <rect x="55" y="252" width="180" height="36" rx="4" fill="#ffffff" opacity="0.95"/>
+  <text x="145" y="266" text-anchor="middle" font-size="10.5" fill="#7c3aed">if mimic_blogger</text>
+  <text x="145" y="280" text-anchor="middle" font-size="10.5" fill="#7c3aed">w/o existing report</text>
+  <g filter="url(#shadow)">
+    <rect x="60" y="360" width="240" height="100" rx="12" fill="#faf5ff" stroke="#7c3aed" stroke-width="1.6" stroke-dasharray="6,3"/>
+  </g>
+  <text x="180" y="386" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">brand-writer-style</text>
+  <text x="180" y="402" text-anchor="middle" font-size="11" fill="#7c3aed">(optional)</text>
+  <text x="80" y="424" font-size="12" fill="#334155">• 分析博主写作风格</text>
+  <text x="80" y="444" font-size="12" fill="#334155">• 产出 style-report.md</text>
+  <path d="M 300 410 L 320 410 L 320 410" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="300" y1="410" x2="328" y2="410" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow-dashed)"/>
+  <line x1="500" y1="316" x2="500" y2="355" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <g filter="url(#shadow)">
+    <rect x="330" y="360" width="380" height="160" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+  </g>
+  <text x="520" y="386" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">brand-writer-article  <tspan font-size="12" font-weight="500" fill="#64748b">(main writer)</tspan></text>
+  <text x="350" y="412" font-size="12" fill="#334155">• 苏格拉底式提问采集素材</text>
+  <text x="350" y="432" font-size="12" fill="#334155">• HKR 选题质检（论点是否锐利）</text>
+  <text x="350" y="452" font-size="12" fill="#334155">• 4 维度从业者素材门槛</text>
+  <text x="350" y="472" font-size="12" fill="#334155">• 写正文 + 5 标题 + 简介 + 关键词</text>
+  <text x="350" y="492" font-size="12" fill="#334155">• 中英双语 + 封面 prompt</text>
+  <line x1="520" y1="520" x2="520" y2="565" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <rect x="540" y="528" width="86" height="20" rx="4" fill="#ffffff" opacity="0.95"/>
+  <text x="583" y="542" text-anchor="middle" font-size="11" fill="#475569" font-style="italic">auto chain</text>
+  <g filter="url(#shadow)">
+    <rect x="330" y="570" width="380" height="160" rx="12" fill="#fff7ed" stroke="#ea580c" stroke-width="1.8"/>
+  </g>
+  <text x="520" y="596" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">brand-writer-check  <tspan font-size="12" font-weight="500" fill="#64748b">(4-layer auto)</tspan></text>
+  <rect x="350" y="616" width="80" height="50" rx="6" fill="#ffffff" stroke="#fdba74" stroke-width="1.2"/>
+  <text x="390" y="635" text-anchor="middle" font-size="12" font-weight="700" fill="#ea580c">L1</text>
+  <text x="390" y="654" text-anchor="middle" font-size="11" fill="#7c2d12">硬性规则</text>
+  <rect x="442" y="616" width="80" height="50" rx="6" fill="#ffffff" stroke="#fdba74" stroke-width="1.2"/>
+  <text x="482" y="635" text-anchor="middle" font-size="12" font-weight="700" fill="#ea580c">L2</text>
+  <text x="482" y="654" text-anchor="middle" font-size="11" fill="#7c2d12">风格一致</text>
+  <rect x="534" y="616" width="80" height="50" rx="6" fill="#ffffff" stroke="#fdba74" stroke-width="1.2"/>
+  <text x="574" y="635" text-anchor="middle" font-size="12" font-weight="700" fill="#ea580c">L3</text>
+  <text x="574" y="654" text-anchor="middle" font-size="11" fill="#7c2d12">内容质量</text>
+  <rect x="626" y="616" width="80" height="50" rx="6" fill="#ffffff" stroke="#fdba74" stroke-width="1.2"/>
+  <text x="666" y="635" text-anchor="middle" font-size="12" font-weight="700" fill="#ea580c">L4</text>
+  <text x="666" y="654" text-anchor="middle" font-size="11" fill="#7c2d12">活人感</text>
+  <text x="520" y="690" text-anchor="middle" font-size="11" fill="#7c2d12">→ self-check-report.md</text>
+  <text x="520" y="710" text-anchor="middle" font-size="11" font-style="italic" fill="#9a3412">halts at stage = human_review_pending</text>
+  <line x1="520" y1="730" x2="520" y2="770" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <polygon points="520,775 620,825 520,875 420,825" fill="#fffbeb" stroke="#f59e0b" stroke-width="1.8" filter="url(#shadow)"/>
+  <text x="520" y="822" text-anchor="middle" font-size="13" font-weight="700" fill="#92400e">human review</text>
+  <text x="520" y="840" text-anchor="middle" font-size="11" fill="#a16207">read self-check report</text>
+  <path d="M 420 825 L 260 825 L 260 868" fill="none" stroke="#475569" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <path d="M 620 825 L 780 825 L 780 868" fill="none" stroke="#475569" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <rect x="460" y="876" width="120" height="22" rx="4" fill="#ffffff" opacity="0.95"/>
+  <text x="520" y="892" text-anchor="middle" font-size="11" font-style="italic" fill="#a16207">用户说"审阅通过"</text>
+  <g filter="url(#shadow)">
+    <rect x="120" y="870" width="280" height="68" rx="10" fill="#ecfdf5" stroke="#059669" stroke-width="1.6"/>
+  </g>
+  <text x="260" y="896" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">brand-writer-social</text>
+  <text x="260" y="918" text-anchor="middle" font-size="11" fill="#047857">微博 / 小红书 / X — captions + hashtags</text>
+  <g filter="url(#shadow)">
+    <rect x="640" y="870" width="280" height="68" rx="10" fill="#ecfdf5" stroke="#059669" stroke-width="1.6"/>
+  </g>
+  <text x="780" y="896" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">brand-writer-image</text>
+  <text x="780" y="918" text-anchor="middle" font-size="11" fill="#047857">fal.ai · 封面 + 正文配图 (PNG)</text>
+</svg>
