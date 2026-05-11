@@ -1,7 +1,7 @@
 ---
 name: brand-writer-article
 description: |
-  品牌产品内容的主写作 skill。产出正文+5 个标题候选+简介+关键词+封面图 prompt，中英双语。通常由 brand-writer 路由而来（用户已确认产品、选好风格源和原型）；也可用户说"开始创作"、"给 example-product 写一篇 XX 主题"直接触发。写完自动 chain 到 brand-writer-check。不要用于风格分析（那是 brand-writer-style），不要用于社媒文案（那是 brand-writer-social）。
+  品牌产品内容的主写作 skill。产出正文+5 个标题候选+简介+关键词+封面图 prompt，中英双语。通常由 brand-writer 路由而来（用户已确认产品、选好风格源和原型）；也可用户说"开始创作"、"给 focusflow 写一篇 XX 主题"直接触发。写完自动 chain 到 brand-writer-check。不要用于风格分析（那是 brand-writer-style），不要用于社媒文案（那是 brand-writer-social）。
 ---
 
 # brand-writer-article 主写作 skill
@@ -169,7 +169,7 @@ self-check 会读 `hkr.pass` 复核；若 `pass=false` 但文章还是写出来�
 tags:
   - brand-writer/content/article
 created: YYYY-MM-DD
-product: <产品名，如 example-product>
+product: <产品名，如 focusflow>
 style-source: 官方调性 / <博主名> / 自由
 archetype: <原型名，如 故障排查>
 ---
@@ -188,23 +188,36 @@ archetype: <原型名，如 故障排查>
 
 ## 封面图 Prompt
 
-**必须**按 `~/.claude/skills/brand-writer-image/references/cover-template.md` **V4 模板**填空产出，输出**完整 7 段 prompt**（Style / Main concept / Composition / Surrounding elements / Top center / Visual details / Restrictions）。V4 起 V3 的 Subject-only 格式已 deprecated——只填 Subject 不再够用。
+**必须**按 `~/.claude/skills/brand-writer-image/references/cover-template.md` **V4.1 模板**填空产出，输出**完整 7 段 prompt**（Style / Main concept / Composition / Surrounding elements / Top center / Visual details / Restrictions）。V4 起 V3 的 Subject-only 格式已 deprecated——只填 Subject 不再够用。
 
-**填空变量**（详细规范见 cover-template.md「变量填写规范」表）：
+**填空变量分两层**（详细规范见 cover-template.md「变量填写规范」表）：
+
+**Layer 1 — 品牌级**（从当前产品 profile 的 `## 封面默认值` section inherit，无需重填）：
+
+| 变量 | 含义 |
+|---|---|
+| `[BG_COLOR]` / `[PRIMARY_COLOR]` / `[SECONDARY_COLOR]` / `[TERTIARY_COLOR]` / `[ACCENT_COLOR]` | 调色板 5 色 |
+| `[MAIN_OBJECT]` / `[MAIN_OBJECT_SURFACE]` / `[MAIN_OBJECT_NAME]` | 中心主物件（laptop / notebook / dashboard / 等） |
+| `[PRODUCT_ICON]` | 产品代表 icon |
+| `[TOP_BADGE_SHAPE]` / `[TOP_BADGE_SEMANTIC]` | 顶部徽章形状 + 语义 |
+
+> 若 profile 没有 `## 封面默认值` section，使用 cover-template.md 末尾的「参考品牌默认」（letsvpn 原默认值）。
+
+**Layer 2 — 每篇文章必填**（写稿时确定）：
 
 | 变量 | 内容来源 |
 |---|---|
-| `[PRODUCT_DOMAIN]` / `[ARTICLE_KIND]` / `[PRODUCT_ICON]` | 从产品 profile 取（建议产品 profile 里固化默认值） |
+| `[PRODUCT_DOMAIN]` / `[ARTICLE_KIND]` | 本篇文章领域 + 类型 |
 | `[MAIN_CONCEPT]` | 30-50 词英文，一句话总结本篇主题 |
-| `[HEADLINE_LINE_1]` / `[HEADLINE_LINE_2]` / `[HEADLINE_FULL]` | 笔记本屏幕主标题，2-3 词英文全大写分两行（恢复 → `SERVICE` / `RESTORED`；停运 → `SERVICE` / `PAUSED`；退款 → `REFUND` / `IN PROGRESS`） |
-| `[SUBTITLE_EN]` | 屏幕下方副标题，简短英文一句（≤10 词） |
-| `[LEFT_ELEMENT]` / `[RIGHT_ELEMENT_BACK]` / `[RIGHT_ELEMENT_FRONT]` | 3 个辅助图标的描述，主题不契合默认值时换为同尺寸语义图标 |
+| `[HEADLINE_LINE_1]` / `[HEADLINE_LINE_2]` / `[HEADLINE_FULL]` | 主标题，2-3 词英文全大写分两行（FocusFlow 例：`DEEP` / `FOCUS`；恢复公告例：`SERVICE` / `RESTORED`） |
+| `[SUBTITLE_EN]` | 副标题，简短英文一句（≤10 词） |
+| `[LEFT_ELEMENT]` / `[RIGHT_ELEMENT_BACK]` / `[RIGHT_ELEMENT_FRONT]` | 3 个辅助图标的描述，按本篇主题选 |
 | `[LEFT_NAME]` / `[RIGHT_BACK_NAME]` / `[RIGHT_FRONT_NAME]` | 上述 3 个元素的简称（用于 Visual details 段汇总） |
 
-**写死规则**（V4 模板内已固定，任何时候不要改）：背景色 #EEEEFE / 调色板（deep navy + lavender + coral-orange，可在产品 profile 里整体替换为品牌色）/ 黑色描边 / 顶部 ✓ 徽章 / 整段 Restrictions / 4 主体上限 / laptop 中心主物件。
+**写死规则**（V4.1 模板内已固定，任何时候不要改）：7 段分块结构 / 16:9 比例宣告 / flat vector 风格 / 黑色描边 / 4 主体上限 / 顶部徽章存在性 / 整段 Restrictions（禁止人物、3D、阴影、渐变）。
 
 - 不要在本文件内重写或节选模板（避免与 cover-template.md 漂移，V2 已统一为单源）
-- 填空时直接读 cover-template.md 取最新 V4 模板文本
+- 填空时直接读 cover-template.md 取最新 V4.1 模板文本
 - V4 起 Path A（外部工具）为推荐路径，Path B（API 自动）为备选——本 prompt 在两条路径下文本完全相同
 
 ## 正文

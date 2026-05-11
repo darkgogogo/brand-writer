@@ -2,7 +2,7 @@
 
 位置：`~/.claude/skills/brand-writer/profiles/<产品名>.md`
 
-文件名约定：产品英文短名，小写，连字符分隔。如 example-product.md、your-product.md。
+文件名约定：产品英文短名，小写（无空格，可用连字符）。如 focusflow.md、my-product.md。
 
 ## 标准结构
 
@@ -62,11 +62,11 @@ display_name_en: <英文正式名>
 **豁免词说明**：
 - 用于登记本产品专属的"官方术语"——即使词在 `brand-writer-check/references/banned-words.md` 🔴/🟡 列表里，登记后也**直接跳过匹配**（不报、不提示）
 - 格式详见 `brand-writer-check/references/banned-words.md` 的「3. 优先级」section
-- 例：example-product 的官方文案「精准识别节点」长期使用"精准"一词，可登记豁免
+- 例：focusflow 的官方文案「深度专注模式」长期使用"深度"一词，可登记豁免
 
 ## 字段级说明
 
 **name**：小写英文短名，是 skill 引用档案的 key。
 **display_name_zh / display_name_en**：用户面对的正式产品名，会出现在稿件中。
-**人称规则**：例如 example-product 规定只用「我们」和「你」，禁用「小编」「XX君」等。
+**人称规则**：例如 focusflow 规定只用「我们」和「你」，禁用「小编」「XX君」等。
 **禁用自称**：模仿博主时，博主的专属自称（如「差评君」「差友」）必须禁用以避免身份错乱。

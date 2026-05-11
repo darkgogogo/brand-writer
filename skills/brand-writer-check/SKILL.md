@@ -44,10 +44,10 @@ L1 只在清洗版本上做词表匹配。被豁免的引用段单独统计，�
 - 🟡 第二级条件禁 → 请复核
 - 🟢 第三级弱禁 → 提示
 
-**profile 豁免词合并（D14）**：加载当前产品的 profile（例 `~/.claude/skills/brand-writer/profiles/example-product.md`），如果存在 `## 豁免词` section，则：
+**profile 豁免词合并（D14）**：加载当前产品的 profile（例 `~/.claude/skills/brand-writer/profiles/focusflow.md`），如果存在 `## 豁免词` section，则：
 1. 解析该 section 下的词条（每行 `- <词>：<豁免理由>` 格式，详见 `references/banned-words.md` 格式示例）
 2. 在匹配前从 🔴/🟡/🟢 词表里**剔除**这些词（只对本产品生效，不改全局文件）
-3. 在 L1 section 末尾追加一行：`> 本次自检已豁免 profile 登记词：X 个（来自 example-product profile）`
+3. 在 L1 section 末尾追加一行：`> 本次自检已豁免 profile 登记词：X 个（来自 focusflow profile）`
 
 若 profile 无 `## 豁免词` section → 正常全量匹配，不做任何处理。
 

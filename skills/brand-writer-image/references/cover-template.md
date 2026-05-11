@@ -1,6 +1,8 @@
-# 封面图固定模板（V4，2026-05-08 起）
+# 封面图固定模板（V4.1，2026-05-11 起）
 
 本工作流所有文章封面使用统一的 V7-style prompt 模板，保证品牌一致性。
+
+**V4.1 变更（2026-05-11）**：把原 V4 写死在结构里的 `laptop` 主物件、`circular checkmark badge`、`indicating successful restoration` 拆出来变成 **profile 可覆盖变量**——任何品牌都能复用结构骨架，把主物件 / 顶部徽章 / 调色板换成自己的视觉语言。原 V4 默认值（laptop + ✓ + 深蓝白调）作为"参考品牌默认"保留在文末。
 
 **V4 变更（2026-05-08）**：模板从 V3 的 Subject-only 简单结构升级为 V7 的 7 段完整 prompt 结构（来源：实测用 ChatGPT 客户端反向工程出的 prompt，输出质量高于 V3）。原因：博客封面需要"主物件 + 辅助 4 元素 + 顶部徽章 + 标题文字排版"的固定结构，简单 Subject 模板不足以驱动稳定输出。
 
@@ -8,35 +10,35 @@
 
 ## 固定 Prompt 模板
 
-每篇封面使用以下 7 段结构。变量部分用 `[占位符]` 标记，**结构和写死部分一字不动**。模板默认调色板和主物件按本工作流的参考品牌设定，若你自己的产品有不同品牌色，按下文「品牌可改部分」调整。
+每篇封面使用以下 7 段结构。变量部分用 `[占位符]` 标记，**结构和 写死部分一字不动**。
 
 ```
 Create a 16:9 flat vector illustration for a [PRODUCT_DOMAIN] [ARTICLE_KIND].
 
 Style:
-Modern tech-editorial blog cover illustration. Clean flat vector design. Solid filled background color #EEEEFE covering the entire canvas. Do NOT use a transparent background. The background must be a solid flat color fill, not white. Limited color palette: deep navy blue #1a1a3e, white, soft lavender-purple #b8b5ff, and small coral-orange accents. All objects must have visible black outlines and black strokes on every main shape. Purely flat illustration, no gradients, no 3D effects, no shadows, no realistic textures.
+Modern tech-editorial blog cover illustration. Clean flat vector design. Solid filled background color [BG_COLOR] covering the entire canvas. Do NOT use a transparent background. The background must be a solid flat color fill, not white. Limited color palette: [PRIMARY_COLOR], [SECONDARY_COLOR], [TERTIARY_COLOR], and small [ACCENT_COLOR] accents. All objects must have visible black outlines and black strokes on every main shape. Purely flat illustration, no gradients, no 3D effects, no shadows, no realistic textures.
 
 Main concept:
 [MAIN_CONCEPT：一句英文描述本篇核心主题，30-50 词]
 
 Composition:
-Centered compact 16:9 composition. A large laptop screen in the center is the main object. On the laptop screen, show a bold headline in deep navy uppercase text:
+Centered compact 16:9 composition. A [MAIN_OBJECT] in the center is the main object. On the [MAIN_OBJECT_SURFACE], show a bold headline in [PRIMARY_COLOR] uppercase text:
 
 [HEADLINE_LINE_1]
 [HEADLINE_LINE_2]
 
 The text should be clean, readable, and spelled exactly as "[HEADLINE_FULL]".
 
-Inside the laptop screen, add a small [PRODUCT_ICON] icon and a short supporting line of text: "[SUBTITLE_EN]". Keep the small text secondary and minimal.
+On/near the [MAIN_OBJECT], add a small [PRODUCT_ICON] icon and a short supporting line of text: "[SUBTITLE_EN]". Keep the small text secondary and minimal.
 
 Surrounding elements:
-To the left of the laptop, place a [LEFT_ELEMENT]. To the right of the laptop, place a [RIGHT_ELEMENT_BACK]. In front of the chart, place a [RIGHT_ELEMENT_FRONT].
+To the left of the [MAIN_OBJECT], place a [LEFT_ELEMENT]. To the right, place a [RIGHT_ELEMENT_BACK]. In front, place a [RIGHT_ELEMENT_FRONT].
 
 Top center:
-Add a circular checkmark badge above the laptop screen, indicating successful restoration.
+Add a [TOP_BADGE_SHAPE] above the [MAIN_OBJECT], indicating [TOP_BADGE_SEMANTIC].
 
 Visual details:
-Use simple geometric shapes, thick black outlines, rounded corners, clean icon-like forms. Add a few tiny decorative dots and plus signs scattered very sparsely around the composition. Keep the image uncluttered with a maximum of four main visual elements: laptop, [LEFT_NAME], [RIGHT_BACK_NAME], [RIGHT_FRONT_NAME].
+Use simple geometric shapes, thick black outlines, rounded corners, clean icon-like forms. Add a few tiny decorative dots and plus signs scattered very sparsely around the composition. Keep the image uncluttered with a maximum of four main visual elements: [MAIN_OBJECT_NAME], [LEFT_NAME], [RIGHT_BACK_NAME], [RIGHT_FRONT_NAME].
 
 Restrictions:
 No people, no human characters, no hands, no faces. No photorealism. No 3D. No shadows. No gradients. No transparent background. No extra text besides "[HEADLINE_FULL]" and optionally "[SUBTITLE_EN]." Ensure the image looks like a polished technology blog article cover.
@@ -44,19 +46,36 @@ No people, no human characters, no hands, no faces. No photorealism. No 3D. No s
 
 ## 变量填写规范
 
-| 变量 | 说明 | 示例（主题：「产品恢复正常运营」） |
+### 每篇文章必填（写稿时确定）
+
+| 变量 | 说明 | 示例 |
 |---|---|---|
-| `[PRODUCT_DOMAIN]` | 产品所在领域，1-3 词 | `VPN service` / `AI tool` / `SaaS app` |
-| `[ARTICLE_KIND]` | 文章类型，1-3 词 | `status announcement` / `feature update` / `troubleshoot guide` |
-| `[MAIN_CONCEPT]` | 一句英文描述本篇主题，30-50 词 | "A VPN service had an outage or technical issue for a period of time and has now returned to normal operation." |
-| `[HEADLINE_LINE_1]` / `[HEADLINE_LINE_2]` | 笔记本屏幕主标题，分两行的英文短词，全大写 | `SERVICE` / `RESTORED` |
-| `[HEADLINE_FULL]` | 同上但单行（用于 Restrictions 段引用） | `SERVICE RESTORED` |
-| `[SUBTITLE_EN]` | 屏幕下方副标题，简短英文一句（建议 ≤10 词） | `The VPN service is back online.` |
-| `[PRODUCT_ICON]` | 产品代表性 icon（一个名词词组） | `VPN shield` / `AI robot` / `cloud sync` |
-| `[LEFT_ELEMENT]` | 笔记本左侧辅助元素描述（建议含 symbolizing 子句） | `large gear icon with circular refresh arrows inside, symbolizing system recovery and restart` |
-| `[RIGHT_ELEMENT_BACK]` | 笔记本右侧后景元素 | `rising bar chart with a coral-orange upward arrow, symbolizing service recovery and normal operation` |
-| `[RIGHT_ELEMENT_FRONT]` | 右侧前景遮挡元素 | `protection shield with a deep navy checkmark, symbolizing secure protection restored` |
-| `[LEFT_NAME]` / `[RIGHT_BACK_NAME]` / `[RIGHT_FRONT_NAME]` | 上述元素的简称（用于 Visual details 段汇总） | `gear/recovery icon` / `rising chart` / `security shield` |
+| `[PRODUCT_DOMAIN]` | 产品所在领域，1-3 词 | `productivity tool` / `VPN service` / `design app` |
+| `[ARTICLE_KIND]` | 文章类型，1-3 词 | `feature update` / `troubleshoot guide` / `status announcement` |
+| `[MAIN_CONCEPT]` | 一句英文描述本篇主题，30-50 词 | "A productivity app reducing context-switching by silencing distracting notifications during deep work sessions." |
+| `[HEADLINE_LINE_1]` / `[HEADLINE_LINE_2]` | 主标题，分两行的英文短词，全大写 | `DEEP` / `FOCUS` |
+| `[HEADLINE_FULL]` | 同上但单行（用于 Restrictions 段引用） | `DEEP FOCUS` |
+| `[SUBTITLE_EN]` | 副标题，简短英文一句（≤10 词） | `Silence the noise. Ship the work.` |
+| `[LEFT_ELEMENT]` / `[RIGHT_ELEMENT_BACK]` / `[RIGHT_ELEMENT_FRONT]` | 3 个辅助元素描述（建议含 symbolizing 子句） | `headphone icon symbolizing focus`; `bell with slash through it symbolizing muted notifications`; `clock with progress ring symbolizing pomodoro` |
+| `[LEFT_NAME]` / `[RIGHT_BACK_NAME]` / `[RIGHT_FRONT_NAME]` | 上述元素的简称（用于 Visual details 段汇总） | `headphones` / `muted bell` / `pomodoro clock` |
+
+### 品牌级（每个产品的 profile 里固化一次，写稿时直接 inherit）
+
+| 变量 | 说明 | letsvpn 默认值 | FocusFlow 示例 |
+|---|---|---|---|
+| `[BG_COLOR]` | 背景纯色 | `#EEEEFE` (淡紫白) | `#FFF8E7` (奶油黄) |
+| `[PRIMARY_COLOR]` | 主深色（标题文字用） | `deep navy blue #1a1a3e` | `forest green #1f3d2e` |
+| `[SECONDARY_COLOR]` | 辅深色 | `white` | `white` |
+| `[TERTIARY_COLOR]` | 辅浅色 | `soft lavender-purple #b8b5ff` | `soft sage #c3d9b4` |
+| `[ACCENT_COLOR]` | 强调色 | `coral-orange` | `warm amber` |
+| `[MAIN_OBJECT]` | 中心主物件 | `large laptop screen` | `large open notebook` |
+| `[MAIN_OBJECT_SURFACE]` | 标题文字落在哪 | `the laptop screen` | `the left page` |
+| `[MAIN_OBJECT_NAME]` | Visual details 段汇总用的简称 | `laptop` | `notebook` |
+| `[PRODUCT_ICON]` | 产品代表性 icon | `VPN shield` | `flower` |
+| `[TOP_BADGE_SHAPE]` | 顶部徽章形状 | `circular checkmark badge` | `crescent moon badge` |
+| `[TOP_BADGE_SEMANTIC]` | 顶部徽章语义 | `successful restoration` | `deep focus mode` |
+
+**建议做法**：把品牌级 12 个字段固化进产品 profile（如 `## 封面默认值` section），写稿时只填上方"每篇必填"那 8 个字段。
 
 ## 写死规则（结构性，任何品牌都不要改）
 
@@ -64,28 +83,34 @@ No people, no human characters, no hands, no faces. No photorealism. No 3D. No s
 
 - **7 段分块结构**：Style / Main concept / Composition / Surrounding elements / Top center / Visual details / Restrictions
 - **比例宣告**：开篇 `Create a 16:9 flat vector illustration for a ...`
-- **主元素数量上限**：4 个主视觉（laptop + 左 + 右后 + 右前），不增不减
-- **笔记本主体**：中心主物件固定为 laptop（屏幕承载文字排版）
-- **顶部 ✓ 徽章**：固定的"成功/正常"信号锚点
+- **主元素数量上限**：4 个主视觉（主物件 + 左 + 右后 + 右前），不增不减
+- **顶部徽章存在性**：必须有一个 top center 徽章作为视觉锚点（形状/语义可换，存在性不可去）
 - **Restrictions 段**：禁止人物、3D、阴影、渐变等约束保留
+- **flat vector + 黑色描边 + 4-color limited palette + 装饰点稀疏**：这些 style 约束保留，颜色具体值可换
 
-## 品牌可改部分（每个产品可自定义）
+## 参考品牌默认（letsvpn 当前值，新品牌可整套替换）
 
-如果你的品牌色 / 主视觉与默认模板不一致，可以改这些字段，**改完后写进自己的 product profile 作为该产品的固定 cover 参数**：
+V4 原版的默认值集中在这里展示，方便新品牌对照换：
 
-| 可改字段 | 默认值（参考品牌） | 改的时候注意 |
-|---|---|---|
-| **背景色** | `#EEEEFE`（淡紫白） | 选一个浅色调，与品牌主色互补 |
-| **调色板** | `#1a1a3e`（深蓝）/ white / `#b8b5ff`（淡紫）/ coral-orange accents | 建议保持 4 色限定（深主色 + 白 + 浅辅色 + 强调色） |
-| **`[PRODUCT_ICON]`** | `VPN shield` | 换成你产品的标志性 icon |
-| **`[PRODUCT_DOMAIN]` 默认值** | `VPN service` | 改成你产品领域 |
-| **`[ARTICLE_KIND]`** | `status announcement` | 按本篇文章类型填 |
+```
+[BG_COLOR]          = #EEEEFE
+[PRIMARY_COLOR]     = deep navy blue #1a1a3e
+[SECONDARY_COLOR]   = white
+[TERTIARY_COLOR]    = soft lavender-purple #b8b5ff
+[ACCENT_COLOR]      = coral-orange
+[MAIN_OBJECT]       = large laptop screen
+[MAIN_OBJECT_SURFACE] = the laptop screen
+[MAIN_OBJECT_NAME]  = laptop
+[PRODUCT_ICON]      = VPN shield
+[TOP_BADGE_SHAPE]   = circular checkmark badge
+[TOP_BADGE_SEMANTIC] = successful restoration
+```
 
-> 建议你写一份「我们品牌的 cover-template overrides」放进产品 profile，把上面 5 个可改字段固化，每篇文章只填变化部分（MAIN_CONCEPT / HEADLINE / SUBTITLE / LEFT/RIGHT_ELEMENT）。
+新产品想完整换一套时，复制这块到 profile 的 `## 封面默认值` section，逐字段改即可。
 
 ## 适用范围
 
-本 V4 模板针对**服务公告 / 状态变更 / 故障排查类**文章设计。其他文章原型（科普 / 调查实验 / 现象解读）使用本模板时若发现核心物件（laptop）与主题违和，可在后续版本扩展平行模板（如 `cover-template-science.md`）。当前 v4 阶段**不分类、不分歧**，统一用本模板验证模板稳定性后再考虑扩展。
+本 V4.1 模板覆盖**服务公告 / 状态变更 / 故障排查 / 功能更新 / 产品科普**类文章。其他原型（如行业现象解读、长篇调查实验）如果"中心主物件"难以选定，可在后续版本扩展平行模板（如 `cover-template-narrative.md` 用更抽象的中心元素）。当前阶段统一用本模板验证稳定性后再考虑扩展。
 
 ## Path 选择建议
 
@@ -131,4 +156,5 @@ sips -c 864 1536 cover.png --out cover.png
 
 - **V1/V2**（2026-05-05）：fal.ai 时代 Subject-only 模板 + DOT EYES 人物风格。已 deprecated。
 - **V3**（2026-05-06）：fal → OpenAI gpt-image-1 切换；Subject-only 模板保留。已 deprecated。
-- **V4**（2026-05-08）：迁移到 V7-style 7 段完整 prompt 模板 + Path A/B 双路径。本版起以 V7-style 为唯一封面规范。
+- **V4**（2026-05-08）：迁移到 V7-style 7 段完整 prompt 模板 + Path A/B 双路径。`laptop` / 顶部 ✓ 徽章 / 调色板写死在结构里。
+- **V4.1**（2026-05-11）：把 `[MAIN_OBJECT]` / `[TOP_BADGE_*]` / 5 个颜色字段提为 profile 级变量，结构骨架真正中性化；letsvpn 原值作为"参考品牌默认"展示。

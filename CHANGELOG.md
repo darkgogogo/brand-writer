@@ -1,5 +1,40 @@
 # Changelog
 
+## v0.3.0 (2026-05-11) - Broaden audience: de-VPN defaults + V4.1 cover-template + Path A spotlight
+
+This release makes the plugin genuinely cross-industry by removing baked-in VPN flavor from defaults and giving every product profile the levers to define its own visual identity.
+
+### Breaking (only visible if you customized the V4 cover-template literally)
+
+- **Cover-template upgraded to V4.1** (`brand-writer-image/references/cover-template.md`). The 7-section structural skeleton is unchanged, but `laptop` / `circular checkmark badge` / `successful restoration` / palette colors are now `[MAIN_OBJECT]` / `[TOP_BADGE_SHAPE]` / `[TOP_BADGE_SEMANTIC]` / 5 color variables, sourced from each product profile's `## 封面默认值` section. If you wrote a custom V4 prompt that hardcoded `laptop`, it still works as-is — but the new variable approach is cleaner.
+- **Default scaffold profile renamed** from `example-product.md` to `focusflow.md`. Anyone whose code paths referenced the file by literal name needs to update; the schema doc / README / SKILL.md trigger phrases all now reference `focusflow`.
+
+### Added
+
+- **Profile-level cover defaults**: every product profile can declare a `## 封面默认值` section with 11 fields (5 colors, 3 main-object fields, product icon, 2 top-badge fields). Cover prompts inherit these on every article; you only fill the per-article concept / headline / surrounding elements.
+- **FocusFlow sample profile**: a fictional productivity SaaS replacing the previous VPN-flavored "example-product" scaffold. Demonstrates the full profile structure (positioning, target users, pain points, technical vocabulary, brand rules, cover defaults, etc.) for any non-VPN audience.
+- **README Path A spotlight**: a 💡 callout at the top of "安装" / "Install" sections makes clear that **image generation works with no API key** by default — only opt-in OpenAI automation needs `OPENAI_API_KEY`. Lowers the entry bar for new users who just want to try the plugin.
+
+### Changed
+
+- **`article-archetypes.md` examples**: all 7 archetype typical-title examples rewritten from VPN-flavored (`为什么 VPN 开着 AI 反而用不了`, `我们花了 30 天测了 20 个 AI 节点`, etc.) to cross-industry (`番茄钟为什么总坚持不到第三个`, `我们用 5 款生产力工具同时跟踪了 30 天的注意力数据`, etc.). The archetype taxonomy / structure /素材门槛 are unchanged.
+- **`brand-writer-article/SKILL.md`**: cover-prompt 填空变量 table now shows two layers (品牌级 inherit-from-profile vs 每篇必填), aligned with the V4.1 template.
+- **`product-profile-schema.md`**: 3 example references updated from `example-product` to `focusflow`; filename convention rewords "必须连字符" → "小写、可用连字符".
+- **`brand-writer-check/references/banned-words.md`**: `## 豁免词` example switched from `精准识别节点` (VPN term) to `深度专注模式` (FocusFlow term).
+- **`brand-writer-social/SKILL.md`**: hashtag examples switched from VPN themes to productivity themes.
+- **`constants.md`**: 目录名 examples rewritten to non-VPN titles.
+
+### Not changed (audited and OK)
+
+- `banned-words.md` 🔴/🟡/🟢 word lists — already brand-neutral (all generic AI-vapor terms).
+- 7 archetype taxonomy itself — universal enough to apply to any product domain.
+- All V4 (2026-05-08) Path A/B fork mechanics and prompt template structure.
+
+### Migration notes
+
+- If you have a custom product profile that copied the old VPN cover defaults: copy the `## 封面默认值` section template from `focusflow.md` and adapt your brand's colors / main object / badge to make covers properly branded.
+- If your code referenced `profiles/example-product.md` by exact path: change to `profiles/focusflow.md`.
+
 ## v0.2.0 (2026-05-11) - Image-gen V3 + V4 sync
 
 This release ports the upstream content workflow's V3 (2026-05-06) and V4 (2026-05-08) changes for image generation.

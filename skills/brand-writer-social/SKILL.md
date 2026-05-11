@@ -58,14 +58,14 @@ Read `articles/<标题>/self-check-report.md`，检查末尾是否含 `**人工�
 示例：
 
 ```text
-#示例产品 #ExampleProduct #AI工具 #VPN #网络安全 #ChatGPT #Claude #Gemini
+#FocusFlow #专注力 #知识工作 #深度工作 #生产力工具 #ChatGPT #远程办公
 ```
 
 **英文**：8-10 个
 示例：
 
 ```text
-#ExampleProduct #VPN #AITools #CyberSecurity #StayConnected #ChatGPT #Claude #Gemini
+#FocusFlow #DeepWork #Productivity #FlowState #KnowledgeWork #FocusMode #RemoteWork
 ```
 
 > ⚠️ **必须用 ` ```text ` code block 包裹**，避免 Obsidian 把 hashtag 解析为笔记 tag。
@@ -85,7 +85,7 @@ Read `articles/<标题>/self-check-report.md`，检查末尾是否含 `**人工�
 **Hashtags**
 
 ```text
-#示例产品 #ExampleProduct #...
+#FocusFlow #...
 ```
 
 ### English
@@ -96,7 +96,7 @@ Read `articles/<标题>/self-check-report.md`，检查末尾是否含 `**人工�
 **Hashtags**
 
 ```text
-#ExampleProduct #VPN #...
+#FocusFlow #DeepWork #...
 ```
 ````
 

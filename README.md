@@ -40,6 +40,8 @@
 
 ## 安装
 
+> 💡 **配图不需要 API key**——默认 Path A 直接把 prompt 给你，你拿到 ChatGPT 客户端 / Midjourney / Figma 自己出图回贴路径；只有想 OpenAI 自动批量出图才走 Path B（需 `OPENAI_API_KEY`）。
+
 ```bash
 # 1. 装插件
 /plugin install brand-writer
@@ -47,7 +49,7 @@
 # 2. （可选）自定义工作目录
 export BRAND_WRITER_HOME="$HOME/my-content"
 
-# 3. （可选）配置配图 API — 仅 Path B 需要，Path A 无需 key
+# 3. （可选，仅 Path B 需要）配置 OpenAI 配图 API
 export OPENAI_API_KEY="sk-xxxxxxxxxxxxxxxxxxxx"
 ```
 
@@ -62,7 +64,7 @@ export OPENAI_API_KEY="sk-xxxxxxxxxxxxxxxxxxxx"
 复制示例文件起步：
 
 ```bash
-cp ~/.claude/plugins/brand-writer/skills/brand-writer/profiles/example-product.md \
+cp ~/.claude/plugins/brand-writer/skills/brand-writer/profiles/focusflow.md \
    ~/.claude/plugins/brand-writer/skills/brand-writer/profiles/your-product.md
 ```
 
@@ -83,7 +85,7 @@ cp ~/.claude/plugins/brand-writer/skills/brand-writer/profiles/example-product.m
 
 打开 Claude Code，发：
 
-> 给 your-product 写一篇「为什么 VPN 开着 AI 反而用不了」的故障排查文
+> 给 your-product 写一篇「番茄钟为什么总坚持不到第三个」的故障排查文
 
 工作流会一步步问你：
 
@@ -265,6 +267,8 @@ MIT — see [LICENSE](./LICENSE).
 
 ### Install
 
+> 💡 **Image generation works without an API key**. Path A (the default for branded covers) just outputs prompts for you to bring to ChatGPT client / Midjourney / Figma. Only Path B (automated OpenAI API) needs `OPENAI_API_KEY`.
+
 ```bash
 /plugin install brand-writer
 export BRAND_WRITER_HOME="$HOME/my-content"     # optional, defaults to ~/Documents/brand-writer/
@@ -287,7 +291,7 @@ The plugin is a 6-skill workflow:
 1. Create a product profile by copying the scaffold:
 
    ```bash
-   cp ~/.claude/plugins/brand-writer/skills/brand-writer/profiles/example-product.md \
+   cp ~/.claude/plugins/brand-writer/skills/brand-writer/profiles/focusflow.md \
       ~/.claude/plugins/brand-writer/skills/brand-writer/profiles/your-product.md
    ```
 

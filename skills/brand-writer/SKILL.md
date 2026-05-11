@@ -1,7 +1,7 @@
 ---
 name: brand-writer
 description: |
-  品牌产品内容创作工作流的入口 skill。当用户明确说要给某个品牌产品（已配置 profile 的产品，未来可扩展）写文章、公告、科普、评测、社媒文案时使用。触发词必须同时包含"写作动词 + 产品名/业务关键词"：如"给 example-product 写"、"给示例产品写"、"给 XXX 产品写一篇"、"example-product 要发个公告"。也接受"继续写 <标题>"/"恢复 <标题>"触发 session 恢复。不要用于个人公众号写作、或没有明确产品上下文的通用写作请求——那些场景让其它通用写作 skill 处理。本 skill 进入后必须第一时间做方案甲确认（"确认给 [产品名] 写一篇稿子？"），用户明确 yes 才进流程，否则退出。
+  品牌产品内容创作工作流的入口 skill。当用户明确说要给某个品牌产品（已配置 profile 的产品，未来可扩展）写文章、公告、科普、评测、社媒文案时使用。触发词必须同时包含"写作动词 + 产品名/业务关键词"：如"给 focusflow 写"、"给 FocusFlow 写"、"给 XXX 产品写一篇"、"focusflow 要发个公告"。也接受"继续写 <标题>"/"恢复 <标题>"触发 session 恢复。不要用于个人公众号写作、或没有明确产品上下文的通用写作请求——那些场景让其它通用写作 skill 处理。本 skill 进入后必须第一时间做方案甲确认（"确认给 [产品名] 写一篇稿子？"），用户明确 yes 才进流程，否则退出。
 ---
 
 # brand-writer 入口 skill
@@ -31,7 +31,7 @@ description: |
 
 ### Step 2. 查 profile（顺序调整，D5）
 
-1. 解析用户话里的产品名（example-product/示例产品/其他）
+1. 解析用户话里的产品名（focusflow/其他）
 2. 查 `~/.claude/skills/brand-writer/profiles/<产品>.md`
 3. **不存在** → 问"当前没有 XX 产品档案，要现在一起建一个吗？（y/n）"
    - y → 按 `references/product-profile-schema.md` 苏格拉底收集，保存后继续
@@ -128,7 +128,7 @@ description: |
 
 ## 让路规则
 
-用户当前消息没有提及 example-product/示例产品/任何 profile 产品名 → 不触发本 skill。
+用户当前消息没有提及 focusflow/任何 profile 产品名 → 不触发本 skill。
 即使触发词含"写"，只要上下文明显是个人创作（"按我的风格写"、"续写这段"），不进本 skill。
 
 ## 可用资源速查
