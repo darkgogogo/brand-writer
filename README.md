@@ -241,13 +241,14 @@ export BRAND_WRITER_HOME="$HOME/Obsidian/MyVault/AI Writer"
 - 文章原型详解：`skills/brand-writer-article/references/article-archetypes.md`
 - 品牌通用规则：`skills/brand-writer-article/references/brand-voice-rules.md`
 - 自检禁用词表：`skills/brand-writer-check/references/banned-words.md`
-- 封面图 V4 模板（V7-style 7 段）：`skills/brand-writer-image/references/cover-template.md`
+- 封面图 V4.1 模板（V7-style 7 段，品牌级变量从 profile inherit）：`skills/brand-writer-image/references/cover-template.md`
 - 配图风格选项（已 deprecated，OpenAI 无 style 预设）：`skills/brand-writer-image/references/style-options.md`
 
 ---
 
 ## Changelog
 
+- **v0.3.2** (2026-05-11) — V4.1 consistency patch continued (2 more stale refs)
 - **v0.3.1** (2026-05-11) — V4.1 consistency patch (docs only, no runtime change)
 - **v0.3.0** (2026-05-11) — Broaden audience: de-VPN defaults + V4.1 cover-template + Path A spotlight
 - **v0.2.0** (2026-05-11) — Image-gen V3 (OpenAI) + V4 (Path A/B fork)
@@ -325,6 +326,7 @@ See `skills/brand-writer/references/` for the full schema, constants, and workfl
 
 ### Changelog
 
+- **v0.3.2** (2026-05-11) — V4.1 consistency patch continued
 - **v0.3.1** (2026-05-11) — V4.1 consistency patch (docs only)
 - **v0.3.0** (2026-05-11) — Broaden audience: de-VPN defaults + V4.1 cover-template + Path A spotlight
 - **v0.2.0** (2026-05-11) — Image-gen V3 (OpenAI) + V4 (Path A/B fork)

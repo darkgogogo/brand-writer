@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.3.2 (2026-05-11) - V4.1 consistency patch (continued)
+
+v0.3.1 missed 2 more "V4 模板" stale references that didn't show in the original `/check-impact` grep scope. This patch cleans them up.
+
+### Fixed
+
+- **`README.md:244`** (配置参考 list): "V4 模板" → "V4.1 模板（V7-style 7 段，品牌级变量从 profile inherit）"
+- **`brand-writer/SKILL.md:24`** (skill router table for brand-writer-image): "V4 模板写死（V4, 2026-05-08 起）" → "V4.1 模板（V4.1, 2026-05-11 起，结构骨架写死、品牌级变量从 profile inherit）"
+
+After this patch, the entire repo (excluding intentional CHANGELOG history quotes) consistently uses "V4.1" when referring to the current cover-template version.
+
 ## v0.3.1 (2026-05-11) - V4.1 consistency patch
 
 Post-release `/check-impact` audit caught 3 inconsistencies in v0.3.0 where V4.1 cover-template was referenced as "V4 模板" or contained factually-stale claims about hardcoded badge content. This patch resolves those without changing runtime behavior.

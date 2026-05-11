@@ -21,7 +21,7 @@ description: |
 | brand-writer-article | 主写作 | 确认后总会触发 |
 | brand-writer-check | 四层自检 + 人工审阅 gate | 由 brand-writer-article 写完后 chain 触发；自检过关后**停在审阅等待**（不自动唤下游，由下游 skill 自己读报告末尾） |
 | brand-writer-social | 社媒 caption + hashtag | 人工审阅通过后按需触发 |
-| brand-writer-image | 配图：用户选 Path A（输出 prompt 自己拿到外部工具生成）或 Path B（API 直调 OpenAI gpt-image-1 自动生成）。封面 prompt 走 V4 模板写死（V4, 2026-05-08 起） | 人工审阅通过后按需触发 |
+| brand-writer-image | 配图：用户选 Path A（输出 prompt 自己拿到外部工具生成）或 Path B（API 直调 OpenAI gpt-image-1 自动生成）。封面 prompt 走 V4.1 模板（V4.1, 2026-05-11 起，结构骨架写死、品牌级变量从 profile inherit） | 人工审阅通过后按需触发 |
 
 ## 分支一：新建稿
 
