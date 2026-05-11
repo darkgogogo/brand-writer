@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.3.1 (2026-05-11) - V4.1 consistency patch
+
+Post-release `/check-impact` audit caught 3 inconsistencies in v0.3.0 where V4.1 cover-template was referenced as "V4 模板" or contained factually-stale claims about hardcoded badge content. This patch resolves those without changing runtime behavior.
+
+### Fixed
+
+- **`brand-writer-image/SKILL.md` lines 122-126**: updated 3 stale "V4 模板" references to "V4.1 模板"; rewrote the line that asserted "顶部 ✓ 徽章 内置在模板里" — now correctly says the badge **existence** is hardcoded but the **shape/semantic** are profile-level variables. (Without this fix, downstream skill could misjudge correctly-formed branded prompts as non-compliant.)
+- **`brand-writer-article/SKILL.md` line 238**: English-version "Cover Image Prompt" section's "V4 模板" → "V4.1 模板"; added explicit note that brand-level variables inherit from profile to keep zh/en covers in sync.
+- **`brand-writer/references/product-profile-schema.md`**: added the new `## 封面默认值` section template (11 fields + 字段级说明) to the canonical profile structure. Previously the focusflow.md scaffold and brand-writer-article SKILL.md both referenced this section, but the schema doc — the authoritative reference for how to write a profile — didn't describe it.
+
+### Migration notes
+
+- No action needed for users on v0.3.0 — runtime behavior is identical. v0.3.1 is purely a documentation consistency fix.
+
 ## v0.3.0 (2026-05-11) - Broaden audience: de-VPN defaults + V4.1 cover-template + Path A spotlight
 
 This release makes the plugin genuinely cross-industry by removing baked-in VPN flavor from defaults and giving every product profile the levers to define its own visual identity.

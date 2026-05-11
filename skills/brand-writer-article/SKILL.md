@@ -235,7 +235,7 @@ archetype: <原型名，如 故障排查>
 
 ### Cover Image Prompt
 
-同上：按 V4 模板填空产出完整 7 段 prompt。`[MAIN_CONCEPT]` / `[HEADLINE]` / `[SUBTITLE_EN]` 按英文版文章内容重新构思，3 个 surrounding elements 字段保持与中文版一致（避免封面双语不同导致品牌视觉漂移）。其他字段——Style / Composition 骨架 / Top center / Visual details / Restrictions——完全照模板原文，不改。
+同上：按 V4.1 模板填空产出完整 7 段 prompt。`[MAIN_CONCEPT]` / `[HEADLINE]` / `[SUBTITLE_EN]` 按英文版文章内容重新构思，3 个 surrounding elements 字段保持与中文版一致（避免封面双语不同导致品牌视觉漂移）。其他字段——Style / Composition 骨架 / Top center / Visual details / Restrictions——完全照模板原文，不改。品牌级变量（调色板、主物件、徽章）从 profile 的 `## 封面默认值` section inherit，跟中文版完全一致。
 
 ### Body
 

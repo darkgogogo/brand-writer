@@ -248,6 +248,7 @@ export BRAND_WRITER_HOME="$HOME/Obsidian/MyVault/AI Writer"
 
 ## Changelog
 
+- **v0.3.1** (2026-05-11) — V4.1 consistency patch (docs only, no runtime change)
 - **v0.3.0** (2026-05-11) — Broaden audience: de-VPN defaults + V4.1 cover-template + Path A spotlight
 - **v0.2.0** (2026-05-11) — Image-gen V3 (OpenAI) + V4 (Path A/B fork)
 - **v0.1.0** (2026-05-05) — Initial public release
@@ -324,6 +325,7 @@ See `skills/brand-writer/references/` for the full schema, constants, and workfl
 
 ### Changelog
 
+- **v0.3.1** (2026-05-11) — V4.1 consistency patch (docs only)
 - **v0.3.0** (2026-05-11) — Broaden audience: de-VPN defaults + V4.1 cover-template + Path A spotlight
 - **v0.2.0** (2026-05-11) — Image-gen V3 (OpenAI) + V4 (Path A/B fork)
 - **v0.1.0** (2026-05-05) — Initial public release

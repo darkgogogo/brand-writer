@@ -119,11 +119,11 @@ Read `articles/<名>/self-check-report.md`，检查末尾是否含 `**人工审�
 
 **封面图**：
 
-文章的「封面图 Prompt」section 应当**已经按 `references/cover-template.md` V4 模板填好**（brand-writer-article 写稿时按模板填空产出）。本 skill 直接原文复制使用，**不做改造、不做缩短、不做风格 override**。
+文章的「封面图 Prompt」section 应当**已经按 `references/cover-template.md` V4.1 模板填好**（brand-writer-article 写稿时按模板填空产出，品牌级变量从 profile 的 `## 封面默认值` section inherit，每篇必填字段写稿时确定）。本 skill 直接原文复制使用，**不做改造、不做缩短、不做风格 override**。
 
-V4 模板写死了完整 7 段 prompt 结构（Style / Main concept / Composition / Surrounding elements / Top center / Visual details / Restrictions），所有风格约束（flat vector、限定调色板、黑色描边、4 主体上限、顶部 ✓ 徽章、no people 等）都内置在模板里。Step 2 只做"原文复制"动作。
+V4.1 模板写死了完整 7 段 prompt 结构（Style / Main concept / Composition / Surrounding elements / Top center / Visual details / Restrictions），以及**结构性约束**（flat vector 风格 / 黑色描边 / 4 主体上限 / 顶部徽章存在性 / 整段 Restrictions 禁止人物 / no 3D / no gradients）。**徽章具体形状/语义、调色板 5 色、中心主物件、产品 icon** 等品牌级元素由 profile 控制（11 个变量），不再"内置"在模板里。Step 2 只做"原文复制"动作。
 
-> ⚠️ 若发现文章的「封面图 Prompt」section 不符合 V4 模板（例如只是 V3 时期的 Subject 段、或缺少 Restrictions），停下来告诉用户："本篇封面 prompt 不符合 V4 模板（缺 X 段），是回 brand-writer-article 重生成 / 还是手动按 cover-template.md 补齐？"
+> ⚠️ 若发现文章的「封面图 Prompt」section 不符合 V4.1 模板（例如只是 V3 时期的 Subject 段、或缺少 Restrictions 段、或品牌级变量未填仍是 `[BRACKET]` 占位符），停下来告诉用户："本篇封面 prompt 不符合 V4.1 模板（缺 X / 占位符未替换），是回 brand-writer-article 重生成 / 还是手动按 cover-template.md 补齐？"
 
 **正文配图**：
 

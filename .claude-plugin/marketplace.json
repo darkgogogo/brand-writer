@@ -1,7 +1,7 @@
 {
   "name": "brand-writer",
   "description": "AI workflow for branded content writing — articles, style mimicry, social captions, covers, self-check.",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "license": "MIT",
   "skills": [
     "./skills/brand-writer",
