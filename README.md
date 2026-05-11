@@ -244,6 +244,15 @@ export BRAND_WRITER_HOME="$HOME/Obsidian/MyVault/AI Writer"
 
 ---
 
+## Changelog
+
+- **v0.2.0** (2026-05-11) — Image-gen V3 (OpenAI) + V4 (Path A/B fork)
+- **v0.1.0** (2026-05-05) — Initial public release
+
+完整变更记录见 [CHANGELOG.md](./CHANGELOG.md) 或 [Releases](https://github.com/darkgogogo/brand-writer/releases)。
+
+---
+
 ## License
 
 MIT — see [LICENSE](./LICENSE).
@@ -307,6 +316,13 @@ The plugin is a 6-skill workflow:
 ### Configuration reference
 
 See `skills/brand-writer/references/` for the full schema, constants, and workflow diagram.
+
+### Changelog
+
+- **v0.2.0** (2026-05-11) — Image-gen V3 (OpenAI) + V4 (Path A/B fork)
+- **v0.1.0** (2026-05-05) — Initial public release
+
+Full history: [CHANGELOG.md](./CHANGELOG.md) · [Releases](https://github.com/darkgogogo/brand-writer/releases).
 
 ### License
 
