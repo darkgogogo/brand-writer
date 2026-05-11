@@ -188,11 +188,24 @@ archetype: <原型名，如 故障排查>
 
 ## 封面图 Prompt
 
-**必须**完整复制 `~/.claude/skills/brand-writer-image/references/cover-template.md` 的「固定 Prompt 模板」，**仅替换末尾 `Subject: ...` 部分**为本文核心关键词对应的场景描述（1-2 句英文，主体图标/物件 + 人物姿态/情绪）。
+**必须**按 `~/.claude/skills/brand-writer-image/references/cover-template.md` **V4 模板**填空产出，输出**完整 7 段 prompt**（Style / Main concept / Composition / Surrounding elements / Top center / Visual details / Restrictions）。V4 起 V3 的 Subject-only 格式已 deprecated——只填 Subject 不再够用。
+
+**填空变量**（详细规范见 cover-template.md「变量填写规范」表）：
+
+| 变量 | 内容来源 |
+|---|---|
+| `[PRODUCT_DOMAIN]` / `[ARTICLE_KIND]` / `[PRODUCT_ICON]` | 从产品 profile 取（建议产品 profile 里固化默认值） |
+| `[MAIN_CONCEPT]` | 30-50 词英文，一句话总结本篇主题 |
+| `[HEADLINE_LINE_1]` / `[HEADLINE_LINE_2]` / `[HEADLINE_FULL]` | 笔记本屏幕主标题，2-3 词英文全大写分两行（恢复 → `SERVICE` / `RESTORED`；停运 → `SERVICE` / `PAUSED`；退款 → `REFUND` / `IN PROGRESS`） |
+| `[SUBTITLE_EN]` | 屏幕下方副标题，简短英文一句（≤10 词） |
+| `[LEFT_ELEMENT]` / `[RIGHT_ELEMENT_BACK]` / `[RIGHT_ELEMENT_FRONT]` | 3 个辅助图标的描述，主题不契合默认值时换为同尺寸语义图标 |
+| `[LEFT_NAME]` / `[RIGHT_BACK_NAME]` / `[RIGHT_FRONT_NAME]` | 上述 3 个元素的简称（用于 Visual details 段汇总） |
+
+**写死规则**（V4 模板内已固定，任何时候不要改）：背景色 #EEEEFE / 调色板（deep navy + lavender + coral-orange，可在产品 profile 里整体替换为品牌色）/ 黑色描边 / 顶部 ✓ 徽章 / 整段 Restrictions / 4 主体上限 / laptop 中心主物件。
 
 - 不要在本文件内重写或节选模板（避免与 cover-template.md 漂移，V2 已统一为单源）
-- Subject 生成规则、示例、禁止修改项全部以 cover-template.md 为准
-- 写作时直接读 cover-template.md 取最新模板文本
+- 填空时直接读 cover-template.md 取最新 V4 模板文本
+- V4 起 Path A（外部工具）为推荐路径，Path B（API 自动）为备选——本 prompt 在两条路径下文本完全相同
 
 ## 正文
 （1500 字左右，每段 #### 四级小标题提炼核心观点。**配图标注是硬性要求**，密度规则、插入位置、精确格式见下方「配图位置标注」section——写正文时必须按其要求内联 `📷 **配图建议**（AI生成/设计师制作）：...`，否则 self-check L1 Layer C 不通过）
@@ -209,7 +222,7 @@ archetype: <原型名，如 故障排查>
 
 ### Cover Image Prompt
 
-同上，复制 `cover-template.md` 的固定模板，Subject 按英文版文章内容重新构思（其他字段完全一致）。
+同上：按 V4 模板填空产出完整 7 段 prompt。`[MAIN_CONCEPT]` / `[HEADLINE]` / `[SUBTITLE_EN]` 按英文版文章内容重新构思，3 个 surrounding elements 字段保持与中文版一致（避免封面双语不同导致品牌视觉漂移）。其他字段——Style / Composition 骨架 / Top center / Visual details / Restrictions——完全照模板原文，不改。
 
 ### Body
 

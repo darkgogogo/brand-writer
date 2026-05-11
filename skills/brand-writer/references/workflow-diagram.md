@@ -32,7 +32,7 @@ brand-writer-check（自检）
   ↓
 [用户审阅通过后按需触发]
 brand-writer-social → 社媒 caption + hashtag（中英，启动前校验人工审阅标记）
-brand-writer-image → fal.ai 生成封面和正文配图
+brand-writer-image → V4（2026-05-08 起）双路径：Path A 输出 prompt 由用户拿外部工具（ChatGPT 客户端 / Midjourney 等）手动生成 / Path B 直调 OpenAI gpt-image-1（V3 残留，前为 fal.ai Recraft V3）；封面 prompt 走 V4 V7-style 7 段模板
 ```
 
 ## 各 skill 的独立触发

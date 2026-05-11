@@ -9,7 +9,7 @@
 
 - 用产品自己的"品牌调性"或模仿任意博主风格写文章
 - 写完自动跑 4 层自检（硬性规则 / 风格一致 / 内容质量 / 活人感）
-- 一键产出社媒短文案 + 封面图（fal.ai）
+- 一键产出社媒短文案 + 封面图（**Path A**：输出 prompt 自己用 ChatGPT 客户端 / Midjourney 生成 / **Path B**：OpenAI gpt-image-1 API 自动生成）
 - 中断恢复、人工审阅 gate、可扩展产品库
 
 ## 适合谁
@@ -47,8 +47,8 @@
 # 2. （可选）自定义工作目录
 export BRAND_WRITER_HOME="$HOME/my-content"
 
-# 3. （可选）配置配图 API
-export FAL_API_KEY="fal_xxxxxxxxxxxx"
+# 3. （可选）配置配图 API — 仅 Path B 需要，Path A 无需 key
+export OPENAI_API_KEY="sk-xxxxxxxxxxxxxxxxxxxx"
 ```
 
 详细安装与排错见 `skills/brand-writer/references/setup.md`。
@@ -135,7 +135,7 @@ cp ~/.claude/plugins/brand-writer/skills/brand-writer/profiles/example-product.m
 之后按需触发：
 
 - `生成微博文案` / `给这篇写小红书 caption` → brand-writer-social
-- `生成配图` / `画一下封面` → brand-writer-image（需要 FAL_API_KEY）
+- `生成配图` → brand-writer-image（V4：先选 Path A 外部工具 / Path B OpenAI API，二选一；Path B 需要 `OPENAI_API_KEY`）
 
 ---
 
@@ -148,7 +148,7 @@ cp ~/.claude/plugins/brand-writer/skills/brand-writer/profiles/example-product.m
 | `brand-writer-style` | "分析 <博主> 风格" | `style-reports/<platform>/<博主>.md` 风格报告 |
 | `brand-writer-check` | 自动 chain / "跑下自检" | `self-check-report.md`（与正文同目录） |
 | `brand-writer-social` | "审阅通过"后 / "给这篇写微博文案" | 追加到正文 .md 的「社媒文案」section |
-| `brand-writer-image` | "审阅通过"后 / "生成配图" | `articles/<标题>/images/cover.png + img1.png ...` |
+| `brand-writer-image` | "审阅通过"后 / "生成配图" | `articles/<标题>/images/cover.png + img1.png ...`（V4 双路径：外部工具贴回 / OpenAI API 自动） |
 
 每个 skill 也可以独立触发（不必走入口路由），适合"已经写好了，单独再跑某一步"的场景。
 
@@ -221,8 +221,10 @@ export BRAND_WRITER_HOME="$HOME/Obsidian/MyVault/AI Writer"
 |---|---|---|
 | 触发了但没进 brand-writer | 消息里没有产品名/写作动词组合 | 显式说"给 <profile name> 写..." |
 | 提示"profile 不存在" | profile 文件名和你说的产品名对不上 | 检查 `profiles/` 下文件名（小写、连字符） |
-| brand-writer-image 报"FAL_API_KEY 未设置" | env 未配 | 见安装 Step 3，配完重启 shell |
-| 配图生成失败 | API 网络/额度问题 | 看 fal.ai dashboard，或先跳过配图发文 |
+| brand-writer-image 报"OPENAI_API_KEY 未设置" | env 未配（仅 Path B 需要） | 见安装 Step 3，配完重启 shell；或选 Path A 走外部工具 |
+| Path B 调用 OpenAI 失败 | API 网络/额度问题 | 看 OpenAI dashboard，或切 Path A 用外部工具生成 |
+| Path B 报 SSL `CERTIFICATE_VERIFY_FAILED` | macOS Python 缺 CA bundle | skill 已默认用 `SSL_CERT_FILE=$(python3 -c "import certifi; print(certifi.where())")` 包裹；如自定义请保留该前缀 |
+| 封面比例不是 16:9 | OpenAI 只支持 1:1 / 3:2 / 2:3 | skill 自动跑 `sips -c 864 1536` 中心裁剪（macOS）；非 macOS 系统 Path B 需手动裁剪或走 Path A |
 | 自检卡住不通过 | 内容确实不达标 | 按 self-check-report.md 的具体提示返工 |
 | 想模仿的博主没有报告 | 风格报告未生成 | 选 mimic_blogger 时会自动 chain 到 brand-writer-style 先采集 |
 
@@ -237,7 +239,8 @@ export BRAND_WRITER_HOME="$HOME/Obsidian/MyVault/AI Writer"
 - 文章原型详解：`skills/brand-writer-article/references/article-archetypes.md`
 - 品牌通用规则：`skills/brand-writer-article/references/brand-voice-rules.md`
 - 自检禁用词表：`skills/brand-writer-check/references/banned-words.md`
-- 配图风格选项：`skills/brand-writer-image/references/style-options.md`
+- 封面图 V4 模板（V7-style 7 段）：`skills/brand-writer-image/references/cover-template.md`
+- 配图风格选项（已 deprecated，OpenAI 无 style 预设）：`skills/brand-writer-image/references/style-options.md`
 
 ---
 
@@ -249,14 +252,14 @@ MIT — see [LICENSE](./LICENSE).
 
 ## English
 
-`brand-writer` is a Claude Code plugin that turns product briefs into ready-to-publish branded articles. It writes in your product's brand voice (or mimics a target blogger), runs a 4-layer quality check, and optionally generates cover/inline images via fal.ai.
+`brand-writer` is a Claude Code plugin that turns product briefs into ready-to-publish branded articles. It writes in your product's brand voice (or mimics a target blogger), runs a 4-layer quality check, and optionally generates cover/inline images via two paths: hand-off to external tools (ChatGPT client / Midjourney / Figma) or direct OpenAI `gpt-image-1` API.
 
 ### Install
 
 ```bash
 /plugin install brand-writer
 export BRAND_WRITER_HOME="$HOME/my-content"     # optional, defaults to ~/Documents/brand-writer/
-export FAL_API_KEY="fal_xxx"                    # optional, for image generation
+export OPENAI_API_KEY="sk-xxx"                  # optional, only for image-gen Path B (API). Path A needs no key.
 ```
 
 ### How it works
@@ -268,7 +271,7 @@ The plugin is a 6-skill workflow:
 3. **brand-writer-article** — main writer. Uses Socratic questioning to collect first-hand source material before drafting. Outputs an article folder with text + 5 title candidates + summary + keywords + cover prompt (bilingual).
 4. **brand-writer-check** — runs 4 self-check layers (hard rules / style consistency / content quality / human-feel), produces a separate `self-check-report.md`, then halts at `human_review_pending`.
 5. **brand-writer-social** — after you approve, generates social captions + hashtags for WeChat / Xiaohongshu / X.
-6. **brand-writer-image** — after you approve, generates cover and inline images via fal.ai.
+6. **brand-writer-image** — after you approve, generates cover and inline images. **V4 (2026-05-08)** introduces a per-article fork: **Path A** outputs prompts you bring to external tools (ChatGPT client / Midjourney / Figma), then paste the resulting absolute paths back for the skill to move + auto-crop; **Path B** calls OpenAI `gpt-image-1` directly. Path A is the recommended default for branded covers (the ChatGPT client produces noticeably better results than the bare API for layout-heavy compositions); Path B is ideal for batch automation or icon-level images.
 
 ### Quick start
 

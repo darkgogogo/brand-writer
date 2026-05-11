@@ -1,4 +1,14 @@
-# 正文配图 6 种风格详解
+# [DEPRECATED V3, 2026-05-06] 正文配图 6 种风格详解
+
+> ⚠️ **本文件已废弃**。V3 起 brand-writer-image 切到 OpenAI gpt-image-1，OpenAI 没有 style 预设参数——所有风格描述靠 prompt 自身完成。本文件下方 6 种 fal Recraft V3 style 在 OpenAI 不存在。
+>
+> **现行做法**：在每个 "📷 配图建议" 标注 / 转写 prompt 时，把风格描述（如 `flat vector illustration with muted blue palette, clean black outlines`）直接写进 prompt。
+>
+> 文件保留作为 fal 时代历史参考，**不要按此选 style**。
+
+---
+
+## [Legacy 内容] 正文配图 6 种风格详解（fal Recraft V3 时代）
 
 全文正文配图统一一种风格，启动时询问用户选择。**全部 API 原生 PNG/WebP 输出，无外部依赖**。
 
